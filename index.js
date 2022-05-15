@@ -4,10 +4,10 @@ const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 
-const generateHtml = require("./src/teamGenerator"); // this is for source
+const generateHtml = require("./src/teamGenerator"); 
 
 
-// The Questions prompts to the user
+// Prompts for the user
 
 const teamArray = [];
 
@@ -36,7 +36,7 @@ const addManager = () => {
           message: "What is the managers Office number?",
         },
       ])
-      // after Qestions are asked, push response to team array
+      // after Questions are asked, push response to team array
       .then((managerResponse) => {
         const { name, id, email, officeNumber } = managerResponse;
         const manager = new Manager(name, id, email, officeNumber);
@@ -74,42 +74,42 @@ const addEmployee = () => {
         type: "input",
         name: "github",
         message: "What is the employee's Github address?",
+        when: (input) => input.role === 'Engineer',
       },
       {
         type: "input",
         name: "school",
         message: "What school did the Intern come from?",
+        when: (input) => input.role === 'Intern',
       },
       {
         type: "confirm",
-        name: "addEmployeee",
+        name: "confirmAddEmployee",
         message: "Would you like to add another employee?",
+        default: false,
       }
 
     ])
 
-    .then((employeePromtResponse) => {
-      var { role, name, id, email, github, school, confirmAddEmployee } =
-        employeePromtResponse;
+    .then(employeeData => {
+        let { name, id, email, role, github, school, confirmAddEmployee } = employeeData;
+        let employee;
+        if (role === "Engineer") {
+            employee = new Engineer(name, id, email, github);
+            console.log(employee);
 
-      let employee;
+        } else if (role === "Intern") {
+            employee = new Intern(name, id, email, school);
+            console.log(employee);
+        }
+        teamArray.push(employee);
+        if (confirmAddEmployee) {
+            return addEmployee(teamArray);
+        } else {
+            return teamArray;
+        }
+    })
 
-      if (role === "Engineer") {
-        employee === new Engineer(name, id, email, github);
-        console.log(employee);
-      } else if (role === "Intern") {
-        employee = new Intern(name, id, email, school);
-        console.log(employee);
-      }
-
-      teamArray.push(employee);
-
-      if (confirmAddEmployee) {
-        return addEmployee(teamArray);
-      } else {
-        return teamArray;
-      }
-    });
 };
 
 const writeToFile = data => {
