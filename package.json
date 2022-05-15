@@ -5,5 +5,23 @@
   "dependencies": {
     "inquirer": "^8.2.4",
     "jest": "^28.1.0"
-  }
+  },
+  "name": "team-profile-generator",
+  "description": "Week 10 Challenge",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndreBlankholm/Team-Profile-Generator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AndreBlankholm/Team-Profile-Generator/issues"
+  },
+  "homepage": "https://github.com/AndreBlankholm/Team-Profile-Generator#readme"
 }
