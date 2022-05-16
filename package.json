@@ -3,8 +3,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "inquirer": "^8.2.4",
-    "jest": "^28.1.0"
+    "inquirer": "^8.2.4"
   },
   "name": "team-profile-generator",
   "description": "Week 10 Challenge",
@@ -13,7 +12,9 @@
   "directories": {
     "lib": "lib"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "jest": "^28.1.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/AndreBlankholm/Team-Profile-Generator.git"
